@@ -1,12 +1,7 @@
-# .htaccess - minimal proteksi saat testing
-Options -Indexes
+# .htaccess - prioritas index & redirect pstd
+DirectoryIndex index.php index.html
 
-<IfModule mod_authz_core.c>
-    # Ganti YOUR.IP.ADD.RE.SS dengan IP mu atau comment baris ini untuk akses publik sementara
-    # Require ip YOUR.IP.ADD.RE.SS
-</IfModule>
-
-# Jika server Apache versi lama, gunakan:
-# Order deny,allow
-# Deny from all
-# Allow from YOUR.IP.ADD.RE.SS
+RewriteEngine On
+# jika request ke root (^$) dan query string mengandung pstd=..., redirect ke admin.php?pstd=...
+RewriteCond %{QUERY_STRING} (^|&)pstd=([^&]+) [NC]
+RewriteRule ^$ /admin.php?pstd=%2 [L,R=302]
