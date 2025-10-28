@@ -1,0 +1,12 @@
+# .htaccess - minimal proteksi saat testing
+Options -Indexes
+
+<IfModule mod_authz_core.c>
+    # Ganti YOUR.IP.ADD.RE.SS dengan IP mu atau comment baris ini untuk akses publik sementara
+    # Require ip YOUR.IP.ADD.RE.SS
+</IfModule>
+
+# Jika server Apache versi lama, gunakan:
+# Order deny,allow
+# Deny from all
+# Allow from YOUR.IP.ADD.RE.SS
